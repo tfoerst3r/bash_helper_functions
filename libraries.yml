@@ -4,8 +4,21 @@
 msg:
   help: Handles Messages
   files:
-    - source: "msg.sh"
+    - source: "src/msg.sh"
       target: "%{user_lib_dir}/msg.%{user_ext}"
-    - source: "msg_not_empty.sh"
+    - source: "src/msg_not_empty.sh"
       target: "%{user_lib_dir}/msg_not_empty.%{user_ext}"
+
+argparse:
+  help: Handles argument parsing
+  files:
+    - source: "src/argparser.sh" 
+      target: "{user_lib_dir}/argparse.%{user_ext}"
+
+print_help:
+  help: Prints the help output
+  files:
+    - source: "src/print_help.sh"
+      target: "{user_lib_dir}/print_help.%{user_ext}"
+
 
