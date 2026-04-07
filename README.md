@@ -5,7 +5,7 @@ SPDX-License-Identifier: CC-BY-4.0
 -->
 
 <center>
-<p style="font-size:20pt" align=center> <b>Bash/Bashly Helper Functions</b> </p>
+<p style="font-size:32pt" align=center> <b>Bash/Bashly Helper Functions</b> </p>
 General purpose Bash functions
 </center>
 
