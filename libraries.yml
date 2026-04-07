@@ -6,10 +6,6 @@ msg:
   files:
     - source: "msg.sh"
       target: "%{user_lib_dir}/msg.%{user_ext}"
-
-msg_not_empty:
-  help: Message if file is not empty
-  files:
     - source: "msg_not_empty.sh"
       target: "%{user_lib_dir}/msg_not_empty.%{user_ext}"
 

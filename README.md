@@ -26,6 +26,12 @@ projects.
 
 ## Usage
 
+Add the following to your bashly library:
+
+``` bash
+$ bashly add --source github:tfoerst3r/bash_helper_functions msg
+```
+
 Each functions has it own file. You can call those functions in your main bash script files. 
 
 ## Contributing (optional)
