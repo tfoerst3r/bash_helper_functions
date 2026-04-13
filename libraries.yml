@@ -24,13 +24,13 @@ print_help:
 create_code_base:
   help: Creates base for settup for code projects
   files:
-    - source: "src/create_gitignore.sh"
+    - source: "src/lib/create_gitignore.sh"
       target: "{user_lib_dir}/lib/create_gitignore.%{user_ext}"
-    - source: "src/create_git.sh"
+    - source: "src/lib/create_git.sh"
       target: "{user_lib_dir}/lib/create_git.%{user_ext}"
-    - source: "src/create_license.sh"
+    - source: "src/lib/create_license.sh"
       target: "{user_lib_dir}/lib/create_license.%{user_ext}"
-    - source: "src/create_python_layout.sh"
+    - source: "src/lib/create_python_layout.sh"
       target: "{user_lib_dir}/lib/create_python_layout.%{user_ext}"
     - source: "src/create_readme.sh"
       target: "{user_lib_dir}/lib/create_readme%{user_ext}"
