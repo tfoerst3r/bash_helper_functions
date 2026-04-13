@@ -4,15 +4,16 @@ SPDX-FileCopyrightText: 2026 tfoerst3r <32761865+tfoerst3r@users.noreply.github.
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-<center>
-<p style="font-size:32pt" align=center> <b>Bash/Bashly Helper Functions</b> </p>
-General purpose Bash functions
-</center>
-
+<div align='center'>"
+  <h1>Bash/Bashly Helper Functions</h1>"
+  <p style='font-size:32pt;'>"
+    General purpose Bash functions"
+  </p>"
+</div>"
+ 
 ## About the Project
 
-Instead of copy past the function in my script manually I make a collection which I can directly add to my `bashly` 
-projects.
+Instead of copy past the function in my script manually I make a collection which I can directly add to my `bashly` projects.
 
 ## Getting Started
 
@@ -27,6 +28,8 @@ projects.
 ## Usage
 
 Add the following to your bashly library:
+
+Example for adding all files of **msg** mentioned in  `libraries.yml`:
 
 ``` bash
 $ bashly add --source github:tfoerst3r/bash_helper_functions msg
