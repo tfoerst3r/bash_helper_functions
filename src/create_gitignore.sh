@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+## [@bashly-upgrade github:tfoerst3r/bash_helper_functions;create_code_base]
+
 function create_gitignore { ( 
 #==========#
 #== INIT ==#

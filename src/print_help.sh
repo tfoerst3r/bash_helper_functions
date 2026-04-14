@@ -2,13 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
-<!--
-SPDX-FileCopyrightText: 2026 tfoerst3r <32761865+tfoerst3r@users.noreply.github.com>
+## [@bashly-upgrade github:tfoerst3r/bash_helper_functions;create_code_base]
 
-SPDX-License-Identifier: MIT
--->
-
-# usage: printhelp
 function printhelp {
 cat <<-EOM
 
