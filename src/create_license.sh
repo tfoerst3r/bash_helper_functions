@@ -6,6 +6,12 @@
 
 ## [@bashly-upgrade github:tfoerst3r/bash_helper_functions;create_code_base]
 
+#================#
+#== USER INPUT ==#
+#================#
+# Name of standalone script
+_target_sa="create_license"
+
 #===============#
 #== FUNCTIONS ==#
 #===============#
@@ -72,7 +78,7 @@ function _argparser_lic {
 
 }
 
-
+#---------------#
 
 function find_files_for_lic {
 
@@ -156,7 +162,7 @@ Please see the individual files for more accurate information.
 #=== STANDALONE PROCESS ===#
 # if [[ "${BASH_SOURCE[0]}" == "${0}" ]] && ! declare -f initialize >/dev/null && ! declare -f run >/dev/null; then
 
-if [[ "$(basename $0)" == "create_license.sh" ]] || [[ "$(basename $0)" == "create_license" ]] ; then
+if [[ "$(basename "${BASH_SOURCE[0]}")" == "$_target_sa"* ]]; then
 
     #================#
     #== USER INPUT ==#
