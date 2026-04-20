@@ -6,20 +6,12 @@
 
 ## [@bashly-upgrade github:tfoerst3r/bash_helper_functions;create_code_base]
 
-#================#
-#== USER INPUT ==#
-#================#
-DEFAULT_LIC_HOLDER="tfoerst3r"
-DEFAULT_LIC_EMAIL="32761865+tfoerst3r@users.noreply.github.com"
-_default_lic=0
-_replace_lic=0
-
 #===============#
 #== FUNCTIONS ==#
 #===============#
 
 #.. standalone only
-function printhelp_lic() {
+function printhelp_lic {
 cat <<-EOM
 
 Generates the basic project folder structure for different applications.
@@ -59,24 +51,24 @@ EOM
 #---------------#
 
 function msg_lic() {
-    local scrname=$(basename "$0")
-    echo "$scrname: $1" >&2
+  local scrname=$(basename "$0")
+  echo "$scrname: $1" >&2
 }
 
 #---------------#
 
 function _argparser_lic {
 
-while [ -n "$1" ]; do
-  case $1 in
-    -h  | --help    ) printhelp_lic && exit 0 ;;
-    -d  | --default ) _default_lic=1; shift 1 ;;
-    -r  | --replace ) _replace_lic=1; shift 1 ;;
-    -*              ) msg_lic "unknown option (ignored): $1" && exit 1 ;;
-    --              ) shift; break ;;
-    *               ) _args_lic="$@"; break ;;
-  esac
-done
+  while [ -n "$1" ]; do
+    case $1 in
+      -h  | --help    ) printhelp_lic && exit 0 ;;
+      -d  | --default ) _default_lic=1; shift 1 ;;
+      -r  | --replace ) _replace_lic=1; shift 1 ;;
+      -*              ) msg_lic "unknown option (ignored): $1" && exit 1 ;;
+      --              ) shift; break ;;
+      *               ) _args_lic="$@"; break ;;
+    esac
+  done
 
 }
 
@@ -84,52 +76,48 @@ done
 
 function find_files_for_lic {
 
-FILETYPE="$1"
-LICENSE="$2"
-LIC_HOLDER="$3"
-LIC_EMAIL="$4"
-STYLE="$5"
-
-if [[ -z "$STYLE" ]]; then
-
-find . \
-  -path "./.venv" -prune \
-  -o -name "*.$FILETYPE" \
-  -exec reuse annotate \
-    --copyright "$LIC_HOLDER <$LIC_EMAIL>" \
-    --license "$LICENSE" \
-    {} +
-
-else
-
-find . \
-  -path "./.venv" -prune \
-  -o -name "*.$FILETYPE" \
-  -exec reuse annotate \
-    --copyright "$LIC_HOLDER <$LIC_EMAIL>" \
-    --license "$LICENSE" \
-    --style "$STYLE" \
-    {} +
-
-fi
+  FILETYPE="$1"
+  LICENSE="$2"
+  LIC_HOLDER="$3"
+  LIC_EMAIL="$4"
+  STYLE="$5"
+  
+  if [[ -z "$STYLE" ]]; then
+  
+  find . \
+    -path "./.venv" -prune \
+    -o -name "*.$FILETYPE" \
+    -exec reuse annotate \
+      --copyright "$LIC_HOLDER <$LIC_EMAIL>" \
+      --license "$LICENSE" \
+      {} +
+  
+  else
+  
+  find . \
+    -path "./.venv" -prune \
+    -o -name "*.$FILETYPE" \
+    -exec reuse annotate \
+      --copyright "$LIC_HOLDER <$LIC_EMAIL>" \
+      --license "$LICENSE" \
+      --style "$STYLE" \
+      {} +
+  
+  fi
 }
 
 #================#
 
 function create_license { (
 
-#==========#
-#== INIT ==#
-#==========#
-
-#================#
-#== USER INPUT ==#
-#================#
-PROJECT_NAME="$1"
-LIC_HOLDER="$2"
-LIC_EMAIL="$3"
-
-license_file="## License
+  #================#
+  #== USER INPUT ==#
+  #================#
+  PROJECT_NAME="$1"
+  LIC_HOLDER="$2"
+  LIC_EMAIL="$3"
+  
+  license_file="## License
 
 This work is licensed under multiple licenses:
 - The data sets are licensed under [CC0-1.0](LICENSES/CC0-1.0.txt).
@@ -142,32 +130,42 @@ Please see the individual files for more accurate information.
 > **Hint:** We provided the copyright and license information in accordance to the [REUSE Specification 3.3](https://reuse.software/spec/).
 "
 
-#---------------#
+  #---------------#
 
-function main {
+  function main {
+    
+    cd "$PROJECT_NAME"
+    reuse download MIT CC-BY-4.0 CC0-1.0
+    echo "$license_file" > LICENSE.md
+    reuse annotate --copyright "$LIC_HOLDER <$LIC_EMAIL>" --license CC-BY-4.0 README.md
+    reuse annotate --copyright "$LIC_HOLDER <$LIC_EMAIL>" --license CC0-1.0 LICENSE.md
+    find_files_for_lic py MIT "$LIC_HOLDER" "$LIC_EMAIL"
+    find_files_for_lic toml CC0-1.0 "$LIC_HOLDER" "$LIC_EMAIL"
+    find_files_for_lic lock CC0-1.0 "$LIC_HOLDER" "$LIC_EMAIL"
+    find_files_for_lic gitignore CC0-1.0 "$LIC_HOLDER" "$LIC_EMAIL" python
   
-  cd "$PROJECT_NAME"
-  reuse download MIT CC-BY-4.0 CC0-1.0
-  echo "$license_file" > LICENSE.md
-  reuse annotate --copyright "$LIC_HOLDER <$LIC_EMAIL>" --license CC-BY-4.0 README.md
-  reuse annotate --copyright "$LIC_HOLDER <$LIC_EMAIL>" --license CC0-1.0 LICENSE.md
-  find_files_for_lic py MIT "$LIC_HOLDER" "$LIC_EMAIL"
-  find_files_for_lic toml CC0-1.0 "$LIC_HOLDER" "$LIC_EMAIL"
-  find_files_for_lic lock CC0-1.0 "$LIC_HOLDER" "$LIC_EMAIL"
-  find_files_for_lic gitignore CC0-1.0 "$LIC_HOLDER" "$LIC_EMAIL" python
-
-}
-
-#==========#
-#== MAIN ==#
-#==========#
-main
+  }
+  
+  #==========#
+  #== MAIN ==#
+  #==========#
+  main
 
 ) }
 
 #=== STANDALONE PROCESS ===#
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]] && ! declare -f initialize >/dev/null && ! declare -f run >/dev/null; then
-    
+# if [[ "${BASH_SOURCE[0]}" == "${0}" ]] && ! declare -f initialize >/dev/null && ! declare -f run >/dev/null; then
+
+if [[ "$(basename $0)" == "create_license.sh" ]] || [[ "$(basename $0)" == "create_license" ]] ; then
+
+    #================#
+    #== USER INPUT ==#
+    #================#
+    DEFAULT_LIC_HOLDER="tfoerst3r"
+    DEFAULT_LIC_EMAIL="32761865+tfoerst3r@users.noreply.github.com"
+    _default_lic=0
+    _replace_lic=0
+
     # Setting global variables for stand alone process
     _argparser_lic "$@"
     _args_lic_arr=($_args_lic)
