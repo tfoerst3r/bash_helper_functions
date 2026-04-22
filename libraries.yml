@@ -35,3 +35,9 @@ create_code_base:
     - source: "src/create_readme.sh"
       target: "%{user_lib_dir}/create_readme.%{user_ext}"
 
+vscode_debug:
+  help: Setup for VSCode
+  files:
+    - source: "src/create_vscode_debugger.sh"
+      target: "%{user_lib_dir}/create_vscode_debugger.%{user_ext}"
+
