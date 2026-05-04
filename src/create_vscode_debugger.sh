@@ -15,7 +15,7 @@ LANG="$1"
 PROJECT_NAME="${args[project_name]}"
 
 declare LAUNCHER[python]="{
-    \"version\": "0.2.0",
+    \"version\": \"2.0.0\",
     \"configurations\": [
 
         {
