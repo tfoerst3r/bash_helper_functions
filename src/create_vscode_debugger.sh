@@ -9,10 +9,10 @@ function create_vscode_debugger { (
 #================#
 #== USER INPUT ==#
 #================#
-PACKAGE_NAME="$1"
+LANG="$1"
+PACKAGE_NAME="$2"
 VSCODEFOLDER=".vscode"
 CONFIGFILE="launch.json"
-LANG="$1"
 PROJECT_NAME="${args[project_name]}"
 
 #===============#
