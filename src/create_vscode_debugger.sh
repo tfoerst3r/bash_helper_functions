@@ -13,11 +13,31 @@ LANG="$1"
 PACKAGE_NAME="$2"
 VSCODEFOLDER=".vscode"
 CONFIGFILE="launch.json"
+TASKFILE="tasks.json"
 PROJECT_NAME="${args[project_name]}"
 
 #===============#
 #== FUNCTIONS ==#
 #===============#
+
+declare TASKS[python]="{
+    \"version\": \"2.0.0\",
+    \"tasks\": [
+        {
+            \"label\": \"run_poetry_install\",
+            \"type\": \"shell\",
+            \"command\": \"poetry install\",
+            \"presentation\": {
+                \"reveal\": \"always\",
+                \"panel\": \"shared\"
+            },
+            \"problemMatcher\": []
+        }
+    ]
+}
+"
+
+#---------------#
 
 declare LAUNCHER[python]="{
     \"version\": \"2.0.0\",
@@ -29,16 +49,18 @@ declare LAUNCHER[python]="{
             \"request\": \"launch\",
             \"module\": \"$PACKAGE_NAME\",
             \"args\": [],
-            \"console\":\"integratedTerminal\"
+            \"console\":\"integratedTerminal\",
+            \"preLaunchTask\": \"run_poetry_install\"
         }
     ]
 }
 "
 
+#---------------#
 
 function test_empty_var {
-if [ -z "$PACKAGE_NAME" ]; then
-    echo "Please add a PACKAGE_NAME. after the function call."
+if [ -z "$PACKAGE_NAME" ] || [ -z "$LANG" ] ; then
+    echo "Please add a PACKAGE_NAME or a programming LANGUAGE."
     exit 1
 fi
 }
@@ -61,6 +83,8 @@ function main {
   
   echo "<==== $CONFIGFILE is written in $VSCODEFOLDER ====>"
   echo "${LAUNCHER[$LANG]}" > "$CONFIGFILE"
+  echo "<==== $TASKFILE is written in $VSCODEFOLDER ====>"
+  echo "${TASKS[$LANG]}" > "$TASKFILE"
 }
 
 #==========#
