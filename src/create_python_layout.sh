@@ -49,7 +49,7 @@ def __hidden() -> None:
     print('$PACKAGE_NAME call')
 
 
-def myproject() -> None:
+def $PACKAGE_NAME() -> None:
     __hidden()
 
 "
