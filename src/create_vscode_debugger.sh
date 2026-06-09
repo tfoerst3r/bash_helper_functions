@@ -9,10 +9,15 @@ function create_vscode_debugger { (
 #================#
 #== USER INPUT ==#
 #================#
+PACKAGE_NAME="$1"
 VSCODEFOLDER=".vscode"
 CONFIGFILE="launch.json"
 LANG="$1"
 PROJECT_NAME="${args[project_name]}"
+
+#===============#
+#== FUNCTIONS ==#
+#===============#
 
 declare LAUNCHER[python]="{
     \"version\": \"2.0.0\",
@@ -22,7 +27,7 @@ declare LAUNCHER[python]="{
             \"name\": \"Python Debugger: Module\",
             \"type\": \"debugpy\",
             \"request\": \"launch\",
-            \"module\": \"em\",
+            \"module\": \"$PACKAGE_NAME\",
             \"args\": [],
             \"console\":\"integratedTerminal\"
         }
@@ -30,9 +35,22 @@ declare LAUNCHER[python]="{
 }
 "
 
-#==========#
-#== MAIN ==#
-#==========#
+
+function test_empty_var {
+if [ -z "$PACKAGE_NAME" ]; then
+    echo "Please add a PACKAGE_NAME. after the function call."
+    exit 1
+fi
+}
+
+#---------------#
+
+function testing {
+  test_empty_var
+}
+
+#---------------#
+
 function main {
   cd "$PROJECT_NAME"
   if [[ -d "$VSCODEFOLDER" ]]; then
@@ -45,6 +63,10 @@ function main {
   echo "${LAUNCHER[$LANG]}" > "$CONFIGFILE"
 }
 
+#==========#
+#== MAIN ==#
+#==========#
+testing
 main
 
 ) }
