@@ -4,12 +4,12 @@ SPDX-FileCopyrightText: 2026 tfoerst3r <32761865+tfoerst3r@users.noreply.github.
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-<div align='center'>"
-  <h1>Bash/Bashly Helper Functions</h1>"
-  <p style='font-size:32pt;'>"
-    General purpose Bash functions"
-  </p>"
-</div>"
+<div align='center'>
+  <h1>Bash/Bashly Helper Functions</h1>
+  <p style='font-size:32pt;'>
+    General purpose Bash functions
+  </p>
+</div>
  
 ## About the Project
 
