@@ -20,7 +20,7 @@ PACKAGE_NAME="$2"
 function __main__ {
 # __main__.py content
 main_content="
-from $PACKAGE_NAME.cli import cli as main
+from $PACKAGE_NAME.cli import main
 
 if __name__ ==\"__main__\":
   main()
@@ -33,7 +33,7 @@ echo "$main_content" > __main__.py
 function cli {
 # cli.py content
 cli_content="
-def cli():
+def main():
     print('CLI call')
 "
 echo "$cli_content" > cli.py
@@ -116,7 +116,16 @@ echo "$test_content"     > test_${PACKAGE_NAME}.py
 
 }
 
-#---------------#
+function pyproject (
+
+echo '[project.scripts]' >> pyproject.toml
+echo "${PACKAGE_NAME} = '${PACKAGE_NAME}.cli:main'" >> pyproject.toml
+
+)
+
+#=============#
+#== TESTING ==#
+#=============#
 
 function test_empty_var {
 if [ -z "$PACKAGE_NAME" ] || [ -z "$PROJECT_NAME" ]; then
@@ -125,7 +134,9 @@ if [ -z "$PACKAGE_NAME" ] || [ -z "$PROJECT_NAME" ]; then
 fi
 }
 
-#---------------#
+#==========#
+#== MAIN ==#
+#==========#
 
 function testing {
   test_empty_var
@@ -148,13 +159,13 @@ function main {
   pytest    # function call
   cd ..
   poetry install
+  pyproject
   cd ..
 
 }
 
-#==========#
-#== MAIN ==#
-#==========#
+#---------------#
+
 testing
 main
 
