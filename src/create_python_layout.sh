@@ -145,8 +145,10 @@ function main {
   base      # function call
   __init__  # function call
   cd ../../tests
-  pytest
-  cd ../..
+  pytest    # function call
+  cd ..
+  poetry install
+  cd ..
 
 }
 
