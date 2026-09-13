@@ -119,7 +119,7 @@ echo "$test_content"     > test_${PACKAGE_NAME}.py
 function pyproject (
 
 echo '[project.scripts]' >> pyproject.toml
-echo "${PACKAGE_NAME} = '${PACKAGE_NAME}.cli:main'" >> pyproject.toml
+echo "${PACKAGE_NAME} = \"${PACKAGE_NAME}.cli:main\"" >> pyproject.toml
 
 )
 
@@ -158,8 +158,8 @@ function main {
   cd ../../tests
   pytest    # function call
   cd ..
-  poetry install
   pyproject
+  poetry install
   cd ..
 
 }
