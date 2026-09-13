@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# SPDX-FileCopyrightText: 2026 tfoerst3r <32761865+tfoerst3r@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 Thomas Foerster <noreply@tfoerster.de>
 #
 # SPDX-License-Identifier: MIT
 
