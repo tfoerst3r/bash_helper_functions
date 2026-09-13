@@ -46,7 +46,7 @@ function base {
 base_content="
 
 def __hidden() -> None:
-    print('$PACKAGE_NAME call')
+    print('foo is called!')
 
 
 def foo() -> None:
@@ -64,7 +64,7 @@ init_content="
 from $PACKAGE_NAME.util import (
     foo, # noqa: F401
 )
-__all__ = ['foo,]
+__all__ = ['foo',]
 
 "
 echo "$init_content" >> __init__.py
